@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//자바스크립트 함수는 리턴값의 타입을 한 종류로 고집하지 않는다.
+
+	function isEvenNumber(number) {
+		if (number%2 == 0) {
+			return true;
+		}
+	}
+	
+	function fn() {
+		var i;
+		
+		var numbers = [30, 29, 15, 26];
+		for (i=0; i<numbers.length; i++) {
+			
+			var number = numbers[i];
+			if (isEvenNumber(number)) {
+				console.log(number, "는 짝수입니다");
+			} else {
+				console.log(number, "는 홀수입니다");
+			}
+		}
+	}
+	
+//	var value1 = isEventNumber(2);
+//	var value2 = isEventNumber(3);
+//	var value3 = isEventNumber(4);
+//	var value4 = isEventNumber(5);
+	
+//	console.log(value1);
+//	console.log(value2);
+//	console.log(value3);
+//	console.log(value4);
+	
+	fn();
+</script>
+</head>
+<body>
+
+</body>
+</html>

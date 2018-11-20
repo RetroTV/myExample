@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	th, td {
+		padding: 12px;
+		text-align: right;
+	}
+</style>
+</head>
+<body>
+	<table >
+		<colgroup>
+			<col width="5%">
+			<col width="15%">
+			<col width="*">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="check-all"/></th>
+				<th>상품번호</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>구매수량</th>
+				<th>구매가격</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="cart-body">
+			<tr id="row-10001">
+				<td><input type="checkbox" name="ckbox" value="10001"/></td>
+				<td>10001</td>
+				<td>청바지</td>
+				<td><span id="price-10001">36,000</span>원</td>
+				<td>
+					<input type="number" id="amount-10001" value="2" style="width: 40px;">개
+					<button id="btn-modify-10001">변경</button>
+				</td>
+				<td><span id="order-price-10001">72,000</span>원</td>
+				<td><button id="btn-del-10001">삭제하기</button></td>
+			</tr>
+			<tr id="row-12031">
+				<td><input type="checkbox" name="ckbox" value="12031"/></td>
+				<td>12031</td>
+				<td>티셔츠</td>
+				<td><span id="price-12031">16,000</span>원</td>
+				<td>
+					<input type="number" id="amount-12031" min="number" value="3" style="width: 40px;">개
+					<button id="btn-modify-12031">변경</button>
+				</td>
+				<td><span id="order-price-12031">48,000</span>원</td>
+				<td><button id="btn-del-12031">삭제하기</button></td>
+			</tr>
+			<tr id="row-51021">
+				<td><input type="checkbox" name="ckbox" value="51021"/></td>
+				<td>51021</td>
+				<td>양말</td>
+				<td><span id="price-51021">1,000</span>원</td>
+				<td>
+					<input type="number" id="amount-51021" value="5" style="width: 40px;">개
+					<button id="btn-modify-51021">변경</button>
+				</td>
+				<td><span id="order-price-51021">5,000</span>원</td>
+				<td><button id="btn-del-51021">삭제하기</button></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7" style="text-align: right;">총 구매가격 : <strong id="total-price">125,000</strong>원 </td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	<div>
+		<button id="btn-selected-del">선택삭제</button>
+		<button id="btn-all-del">전체삭제</button>
+	</div>
+	
+	<script>
+/*		// 전체 선택/해제 구현하기
+		document.getElementById("check-all").onchange = function(event) {
+			
+			//var currentState = document.getElementById("check-all").checked;
+			var currentState = event.target.checked;
+			
+			var checkboxes = document.querySelectorAll("input[name='ckbox']");
+			for (var i=0; i<checkboxes.length; i++) {
+				var checkbox = checkboxes[i];
+				checkbox.checked = currentState;
+			}
+		}
+*/		
+		document.getElementById("check-all").onchange = function(event) {
+			
+			//var currentState = document.getElementById("check-all").checked;
+			var currentState = event.target.checked;
+			
+			var checkboxes = document.querySelectorAll("input[name='ckbox']").forEach(function(checkbox) {
+				checkbox.checked = event.target.checked;
+			})
+		}
+		
+/*		document.getElementById("btn-selected-del").onclick = function(event) {
+			
+			var checkboxes = document.querySelectorAll("input[name='ckbox']");
+			for (var i=0; i<checkboxes.length; i++) {
+				var checkbox = checkboxes[i];
+				if (checkbox.checked) {
+					var productNo = checkbox.value;
+					document.getElementById("row-" + productNo).remove();
+				}
+			}
+		}
+*/
+		document.getElementById("btn-selected-del").onclick = function(event) {
+			document.querySelectorAll("input[name='ckbox']").forEach(function(checkbox) {
+				if(checkbox.checked) {
+					document.getElementById("row-" + checkbox.value).remove();
+					updateTotalPrice();
+				}
+			})
+		}
+		
+		document.getElementById("btn-all-del").onclick = function(event) {
+			document.getElementById("cart-body").innerHTML = "";
+			updateTotalPrice();
+		}
+		
+		document.querySelectorAll("button[id^='btn-del']").forEach(function(button) {
+			button.onclick = function(event) {
+				var buttonId = event.target.id;
+				var productNo = buttonId.replace("btn-del-", "");
+				document.getElementById("row-" + productNo).remove();
+				updateTotalPrice();
+			}
+		});
+		
+		document.querySelectorAll("button[id^='btn-modify']").forEach(function(button) {
+			button.onclick = function(event) {
+				var regExp = /^[0-9]{1,}$/;
+				
+				var buttonId = event.target.id;
+				var productNo = buttonId.replace('btn-modify-', '');
+				
+				var price = currencyToNumber(document.getElementById('price-' + productNo).textContent);
+				var amount = document.getElementById('amount-' + productNo).value;
+				
+				if (!regExp.test(amount)) {
+					alert("0 이상의 정수만 입력 가능합니다, 수량을 1로 설정합니다.");
+					amount = 1;
+					document.getElementById('amount-' + productNo).value = 1;
+				}
+				var orderPrice = price * amount;
+				
+				document.getElementById("order-price-" + productNo).textContent = numberToCurrency(orderPrice);
+				
+				updateTotalPrice();
+			}
+		});
+		
+		function currencyToNumber(currency) {
+			return parseInt(currency.replace(/,/g, ''));
+		}
+		
+		function numberToCurrency(number) {
+			return new Number(number).toLocaleString();
+		}
+		
+		function updateTotalPrice() {
+			var spans = document.querySelectorAll("span[id^='order-price']");
+			var totalPrice = 0;
+			
+			for (var i=0; i<spans.length; i++) {
+				var span = spans[i];
+				var price = parseInt(span.textContent.replace(/,/g, ''));
+				totalPrice += price;
+			}
+			
+			document.getElementById("total-price").textContent = new Number(totalPrice).toLocaleString();
+		}
+		
+	</script>
+</body>
+</html>

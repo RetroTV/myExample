@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<div>
+		가격 : <input type="text" id="product-price" name="productPrice"/><br />
+		수량 : <input type="text" id="product-amount" name="productAmount"/><br />
+			   <button id="btn-modify">변경</button><br />
+		구매 가격 : <span id="total-price"></span> 원
+	</div>
+<script type="text/javascript">
+	//숫자변환 함수
+	//parseInt(string)		문자를 정수로 변환
+	//parseFloat(string)	문자를 실수로 변환
+	
+	//사칙연산 중에서 '+'는 반드시 양항을 숫자로 변환한 후에 시행해야 한다.
+	
+	document.getElementById("btn-modify").onclick = function() {
+		var price = parseInt( document.getElementById("product-price").value );
+		var amount = parseInt( document.getElementById("product-amount").value );
+		var totalPrice = price * amount;
+		document.getElementById("total-price").textContent = totalPrice;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<p id="box-1">안녕하세요</p>
+	</div>
+</body>
+<script type="text/javascript">
+	function dom(id) {
+		var el = document.getElementById(id);
+		
+		var obj = {
+			getContent: function() {
+				return el.textContent;
+			},
+			setContent: function(content) {
+				el.textContent = content;
+				return this;
+			},
+			setStyle: function(property, value) {
+				el.style[property] = value;			
+				return this;
+			}
+		};
+		return obj;
+	}
+	
+	var obj1 = dom("box-1");
+	var obj2 = dom("box-2");
+	
+	console.log(obj1.getContent());
+	obj1.setContent("오늘 저녁에 소스 많이 보세요");
+	obj1.setStyle("color", "red");
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function Car() {
+		this.type = "승용차";
+	}
+	
+	Car.prototype.start = function() {
+		console.log("주행시작");
+	}
+	Car.prototype.stop = function() {
+		console.log("주행멈춤");
+	}
+	
+	function Sonata() {
+		this.company = "현대자동차";
+	}
+	
+	//Sonata가 Car를 상속받도록 한다
+	Sonata.prototype = new Car();
+	
+	Sonata.prototype.navi = function() {
+		console.log("내비작동");
+	}
+	
+	var s1 = new Sonata();
+	console.log(s1);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		1. 페이지가 열리면 자동으로 그림이 2초마다 순서대로 표시된다
+		2. 큰 그림에 마우스 포인트가 올라가면 롤링이 중단된다
+		3. 큰 그림에서 마우스 포인트가 빠지면 다시 롤링이 시작된다
+	 -->
+	<div>
+		<img id=big-image alt="" src="images/001.jpg" style="width: 400px; height: 400px;" />
+	</div>
+	<div>
+		<img id="image1" alt="" src="images/001.jpg" style="width: 150px; height: 150px;" />
+		<img id="image2" alt="" src="images/002.jpg" style="width: 150px; height: 150px;" />
+		<img id="image3" alt="" src="images/003.jpg" style="width: 150px; height: 150px;" />
+		<img id="image4" alt="" src="images/004.jpg" style="width: 150px; height: 150px;" />
+		<img id="image5" alt="" src="images/005.jpg" style="width: 150px; height: 150px;" />
+		<img id="image6" alt="" src="images/006.jpg" style="width: 150px; height: 150px;" />
+		<img id="image7" alt="" src="images/007.jpg" style="width: 150px; height: 150px;" />
+		<img id="image8" alt="" src="images/008.jpg" style="width: 150px; height: 150px;" />
+	</div>
+	<script>
+		/*
+			1. 아이디 부여				X
+			2. 사용되는 엘리먼트 조회	X
+			3. 롤링 함수 구현
+				loopIndex, timerId ...
+			4. 롤링 함수 실행
+			
+			5. 큰 그림에 mouseenter 이벤트 발생시 롤링 중단
+			6. 큰 그림에 mouseleave 이벤트 발생시 롤링 시작
+		*/
+		
+		var bigImage = document.getElementById("big-image");
+		var images = [];
+		var timerId;
+		var loopIndex = 2;
+		
+		for (var i=1; i<=8; i++) {
+			images[i] = document.getElementById("image"+i);
+		}
+		
+		bigImage.addEventListener("mouseenter", function() {
+			timerId = clearInterval(timerId);
+		});
+		bigImage.addEventListener("mouseleave", function() {
+			timerId = setInterval(startRolling, 2000);
+		});
+		
+		function hiddenAllImage() {
+			images.forEach(function(image, i) {
+				image.style.display = "none";
+			})
+		}
+		
+		function displayImage(index) {
+			bigImage.src = images[index].src
+		}
+		
+		function startRolling() {
+			var index = loopIndex % 8;
+			if (index == 0) {
+				index = 8;
+			}
+			displayImage(index);
+			
+			loopIndex++
+		}
+		
+		function stopRolling() {
+			clearInterval(timerId);
+		}
+		
+		window.onload = function() {
+			timerId = setInterval(startRolling, 2000);
+		}
+	</script>
+</body>
+</html>

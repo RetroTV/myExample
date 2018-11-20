@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h3>고객정보</h3>
+		<p>고객번호 : <span id="cust-no"></span></p>
+		<p>고객이름 : <span id="cust-name"></span></p>
+		<p>전화번호 : <span id="cust-phone"></span></p>
+		<p>고객주소 : <span id="cust-addr"></span></p>
+	</div>
+	
+	<div>
+		고객명 : <input type="text" id="search-name"><button id="btn-search">조회</button>
+	</div> 
+	
+	<script type="text/javascript">
+		document.getElementById("btn-search").onclick = function(event) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "sample2.json");
+			xhr.send();
+			xhr.onreadystatechange = function() {
+				
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					
+					var data = xhr.responseText;
+					var customer = JSON.parse(data);
+					document.getElementById("cust-no").textContent = customer.no;
+					document.getElementById("cust-name").textContent = customer.name;
+					document.getElementById("cust-phone").textContent = customer.phone;
+					document.getElementById("cust-addr").textContent = customer.addr;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

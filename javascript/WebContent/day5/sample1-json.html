@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h3>상품정보</h3>
+		<p>상품명: <span id="name-1"></span></p>
+		<p>가격: <span id="price-1"></span></p>
+	</div>
+
+	<div>
+		<h3>고객정보</h3>
+		<p>고객명 : <span id="name-2"></span></p>
+		<p>연락처 : <span id="tel-1"></span></p>
+		<p>구입자동차명 : <span id="name-3"></span></p>
+		<p>구입자동차 제조사 : <span id="name-4"></span></p>
+		<p>구입자동차 가격 : <span id="price-2"></span></p>
+	</div>
+	
+	<div>
+		<h3>구매상품 리스트</h3>
+		<p>고객명: <span id="name-3-1"></span></p>
+		<p>상품명: <span id="name-3-2"></span></p>
+		<p>가격: <span id="name-3-3"></span></p>
+		<p>상품명: <span id="name-3-4"></span></p>
+		<p>가격: <span id="name-3-5"></span></p>
+	</div>
+	
+	<div>
+		<h3>박스 오피스</h3>
+		<ul id="movie-box">
+		
+		</ul>
+	</div>
+	
+	<div>
+		<h3>현재 날씨</h3>
+		<table border="1" style="width:100%;">
+			<thead>
+				<tr>
+					<th>시간</th>
+					<th>기온</th>
+					<th>습도</th>
+					<th>바람</th>
+				</tr>
+			</thead>
+			<tbody id="wether-body">
+				
+			</tbody>
+		</table>
+	</div>
+
+<script type="text/javascript">
+
+var text1 = '{"no":10, "name":"청바지", "maker":"나이키", "price":35000, "discount":false}';
+var text2 = '{"name":"홍길동", "phone":"010-1111-1111", "car":{"name":"쏘나타", "maker":"현대", "price":25000000}}';
+var text3 = '{"name":"홍길동", "orderItems":[{"name":"청바지", "price":30000}, {"name":"셔츠", "price":27000}]}';
+var text4 ='["보헤미안 랩소디", "신비한 동물사전", "암수살인"]';
+var text5 = '[{"시간":10, "기온":4, "습도":25, "바람":"북서풍"}, {"시간":11, "기온":5, "습도":35, "바람":"북서풍"}]';
+
+var obj1 = JSON.parse(text1);
+document.getElementById("name-1").textContent = obj1.name;
+document.getElementById("price-1").textContext = obj1.price;
+
+var obj2 = JSON.parse(text2);
+document.getElementById("name-2").textContent = obj2.name;
+document.getElementById("tel-1").textContent = obj2.phone;
+document.getElementById("name-3").textContent = obj2.car.name;
+document.getElementById("name-4").textContent = obj2.car.maker;
+document.getElementById("price-1").textContent = obj2.car.price;
+
+var obj3 = JSON.parse(text3);
+document.getElementById("name-3-1").textContent = obj3.name;
+document.getElementById("name-3-2").textContent = obj3.orderItems[0];
+document.getElementById("name-3-3").textContent = obj3.orderItems[0].price;
+document.getElementById("name-3-4").textContent = obj3.orderItems[1].name;
+document.getElementById("name-3-5").textContent = obj3.orderItems[1].price;
+
+var obj4 = JSON.parse(text4);
+var html = "";
+for(var i=0; i<obj4.length; i++) {
+	html += "<li>" + obj4[i] + "</li>";
+}
+
+obj4.forEach(function(item, index) {
+	html += "<li>"+item+"</li>";
+});
+
+document.getElementById("movie-box").innerHTML = html;
+
+var obj5 = JSON.parse(text5);
+var rows = "";
+for (i=0; i<0bj5.length; i++) {
+
+	var item = obj5[i];
+	
+	rows += "<tr>";
+	rows += "<td>"+item.시간+"</td>";
+	rows += "<td>"+item.기온+"</td>";
+	rows += "<td>"+item.습도+"</td>";
+	rows += "<td>"+item.바람+"</td>";
+	rows += "</tr>";
+}
+
+document.getElementById("weather-body").innerHTML = rows;
+
+</script>
+</body>
+</html>

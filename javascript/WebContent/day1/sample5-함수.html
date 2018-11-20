@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function fn1() {
+		console.log("반환값이 없는 fn1함수가 실행됨");
+	}
+	
+	function fn2() {
+		console.log("반환값이 없는 fn2함수가 실행됨");
+		return;
+	}
+	
+	function fn3() {
+		console.log("반환값이 있는 fn3함수가 실행됨");
+		return 100;
+	}
+	
+	var value1 = fn1();
+	var value2 = fn2();
+	var value3 = fn3();
+	console.log("반환값", value1);		//return문이 없더라도 항상 undefined 라는 값이 반환된다
+	console.log("반환값", value2);
+	console.log("반환값", value3);
+</script>
+</head>
+<body>
+
+</body>
+</html>

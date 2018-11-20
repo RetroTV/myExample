@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<button id="btn-add">등록버튼</button>
+		<button id="btn-del">삭제버튼</button>
+		<button id="btn-modify">수정버튼</button>
+		<!-- <button id="btn-modify" onclick="modify();">수정버튼</button>는 이 방식으로는 안먹힌다 -->
+	</div>
+<script type="text/javascript">
+	//즉시 실행함수 정의
+	(function() {
+		function add() {
+			console.log("등록작업 수행");
+		}
+		function del() {
+			console.log("삭제작업 수행");
+		}
+		function modify() {
+			console.log("수정작업 수행");
+		}
+		
+		document.getElementById("btn-add").onclick = add;
+		document.getElementById("btn-del").onclick = del;
+		document.getElementById("btn-modify").onclick = modify;
+		
+	})();
+</script>
+</body>
+</html>

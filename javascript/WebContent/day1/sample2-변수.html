@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//변수 끌어올리기
+	/*
+		자바스크립트에서는 코드내에 선언된 모든 변수를 소스코드의 맨 처음 혹은 그 변수가 선언된 함수의 맨 처음으로 끌어올린다
+		*자바스크립트에서는 변수의 스코프가 블록이 아니다 (자바는 선언한 블록에서만 사용이 가능했음)
+		*자바스크립트에서 변수의 스코프는 함수다.
+	*/
+	var maxFilesize = 1024;
+	
+	function fn1() {
+		console.log("최대 파일 사이즈: ", maxFilesize);
+		
+		var fileQty = 12;
+		if (fileQty > 10) {
+			var maxFilesize = 1024 * 5;
+		}
+		console.log("최대 파일 사이즈: ", maxFilesize);
+	}
+	
+	function fn2() {
+		
+		console.log("유저이름: ", username);
+		console.log("유저연락처: ", usertel);
+		
+		var username = "홍길동";
+		var usertel = "010-1111-1111";
+		
+		console.log("유저이름: ", username);
+		console.log("유저연락처: ", usertel);
+	}
+	
+	function fn3() {
+		
+		var x = 10;
+		
+		if(x > 5) {
+			var y = x*10;
+			console.log("x값", x);
+			console.log("y값", y);
+		}
+			console.log("x값", x);
+			console.log("y값", y);
+	}
+	
+	fn1();
+	fn2();
+	fn3();
+</script>
+</head>
+<body>
+
+</body>
+</html>

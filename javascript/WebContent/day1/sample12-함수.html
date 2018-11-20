@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//비밀번호 작성 조건
+	//최소길이, 최대길이는 필수
+	function passwordConfig(min, max) {
+		var minLength = min;
+		var maxLength = max || 10;
+		var extendsChar = "", i;
+		
+		if (arguments.length >= 3) {
+			for(i=3; i<arguments.length; i++) {
+				extendsChar += arguments[i];
+			}
+		}
+		console.log("최소길이", minLength);
+		console.log("최대길이", maxLength);
+		console.log("특수문자", extendsChar);
+	}
+	
+	passwordConfig(6);
+	passwordConfig(6, 12);
+	passwordConfig(6, 10, '?', '_', '!');
+</script>
+</head>
+<body>
+
+</body>
+</html>

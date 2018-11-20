@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h3>지하철 실시간 도착정보 조회</h3>
+		<label>지하철역명</label> : <input type="text" id="search-station"><button id="search-btn">조회</button>
+	</div>
+	<div>
+		<h3>전철 도착정보</h3>
+		<table border="1" style="width:100;">
+			<thead>
+				<tr>
+					<th>지하철호선 ID</th>
+					<th>상/하행 구분</th>
+					<th>도착지 방면</th>
+					<th>출구방향</th>
+					<th>열차도착예정시간</th>
+					<th>도착메세지</th>
+					<th>종착지 지하철 역명</th>
+				</tr>
+			</thead>
+			<tbody id="subway-info">
+			</tbody>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("search-btn").onclick = function(event) {
+		
+		var name = document.getElementById("search-station").value;
+		if(!name){
+			alert("역명을 입력하세요");
+			return false;
+		}
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/1/5/" + name);
+		xhr.send();
+		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				
+				var data = xhr.responseText;
+				var subwayLine = JSON.parse(data);
+				var subwayInfoList = subwayLine.realtimeArrivalList;
+				var rows = "";
+				
+				for(i=0; i<subwayInfoList.length; i++) {
+					var subwayInfo = subwayInfoList[i];
+					
+					var subwayID = subwayInfo.subwayID
+					var updnLine = subwayInfo.updnLine
+					var trainLineNm = subwayInfo.trainLineNm
+					var subwayHeading = subwayInfo.subwayHeading
+					var recptnDt = subwayInfo.recptnDt
+					var arvlMsg2 = subwayInfo.arvlMsg2
+					var bstatnNm = subwayInfo.bstatnNm
+					
+					rows +="<tr>";
+					rows +="<td>"+subwayID+"</td>";
+					rows +="<td>"+updnLine+"</td>";
+					rows +="<td>"+trainLineNm+"</td>";
+					rows +="<td>"+subwayHeading+"</td>";
+					rows +="<td>"+recptnDt+"</td>";
+					rows +="<td>"+arvlMsg2+"</td>";
+					rows +="<td>"+bstatnNm+"</td>";
+					rows +="</tr>"
+				}
+				document.getElementById("subway-info").innerHTML=rows;
+			}
+		}
+	}
+</script>
+</html>

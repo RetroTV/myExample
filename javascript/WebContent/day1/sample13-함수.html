@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<button id="btn-add">등록버튼</button>
+		<button id="btn-del">수정버튼</button>
+	</div>
+
+<script type="text/javascript">
+	//함수를 전달받는 함수
+	
+	function addEventHandler(id, callback) {
+		document.getElementById(id).onclick = callback;
+	}
+	
+	addEventHandler("btn-add", function() { alert("등록작업 수행"); });
+	addEventHandler("btn-del", function() { alert("삭제작업 수행"); });
+</script>
+</body>
+</html>

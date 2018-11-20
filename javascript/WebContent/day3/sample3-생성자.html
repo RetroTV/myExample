@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function Student(name, kor, eng, math) {
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+		this.getTotal = function() {
+			return kor + math + eng;
+		}
+		this.getAverage = function() {
+			return this.getTotal()/3;
+		}
+	}
+	
+	var s1 = new Student("홍길동", 60, 65, 80);
+	var s2 = new Student("김유신", 50, 75, 70);
+	var s3 = new Student("강감찬", 80, 45, 90);
+	
+	console.log("총점", s1.getTotal());
+	console.log("총점", s1.getAverage());
+	console.log("총점", s2.getTotal());
+	console.log("총점", s2.getAverage());
+	console.log("총점", s3.getTotal());
+	console.log("총점", s3.getAverage());
+</script>
+</head>
+<body>
+
+</body>
+</html>

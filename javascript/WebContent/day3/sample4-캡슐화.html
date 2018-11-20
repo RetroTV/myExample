@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	var sequence = 1000000;
+
+	function Account() {
+	
+		var owner, accountNo, password = "1234", balance, isAuth = false;
+		
+		accountNo = "2018-11-" + sequence++;
+		
+		return {
+			setOwner: function(name) {
+				owner = name;
+			},
+			getOwner: function() {
+				if (isAuth) {
+					return owner;
+				} else {
+					return "xxxx";
+				}
+			},
+			getAccountNo: function() {
+				if (isAuth) {
+				return accountNo;
+				} else {
+					return "xxxx-xx-xxxxxxx";
+				}
+			},
+			certificate: function(pwd) {
+				if (password === pwd) {
+					isAuth = true;
+				}
+			}
+		}
+	}
+	
+	var acc1 = new Account();
+	acc1.getAccount();		  // xxxx-xx-xxxxxx
+	acc1.certificate("1234"); // 이 과정을 거쳐야만 밑에 제대로 표시된다.
+	acc1.getAccount();
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

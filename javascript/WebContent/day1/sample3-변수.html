@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function fn1() {
+		//추천하지 않는 방식
+		var x = 10;
+		
+		if (x>5) {
+			var y = x*2;
+			console.log(x);
+			console.log(y);
+		}
+	}
+	
+	function fn2() {
+		//모든 변수는 함수의 맨 처음에서 전부 선언하자
+		var x,y;
+		
+		x = 10;
+		if (x>5) {
+			y = x*2;
+			console.log(x);
+			console.log(y);
+		}
+	}
+
+	function fn3() {
+		//모든 변수는 함수의 맨 처음에서 전부 선언하자
+		var x = 10,y;
+		
+		if (x>5) {
+			y = x*2;
+			console.log(x);
+			console.log(y);
+		}
+	}
+	
+	fn1();
+	fn2();
+	fn3();
+</script>
+</head>
+<body>
+
+</body>
+</html>

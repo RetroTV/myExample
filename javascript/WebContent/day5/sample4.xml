@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<customer>
+	<name>홍길동</name>
+	<phone>010-1111-2222</phone>
+	<addr>서울특별시 종로구</addr>
+</customer>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//함수 안에서 함수를 선언할 수 있다.
+	//함수 내부에서 선언된 함수는 전역공간에 정의됨, 같은 이름의 함수를 덮어쓰지 않는다.
+	//함수 내부에서 선언된 함수는 그 함수안에서만 사용가능하다.
+	//함수 내부에서 필요한 함수를 정의해서 사용한다면 이름 충돌을 신경쓰지 않아도 된다.
+	function plus() {
+		console.log("덧셈기능 수행");
+	}
+	
+	function work() {
+		
+		function plus() {
+			console.log("매우 복잡한 덧셈 기능");
+		}
+		var minus = function() {
+			console.log("매우 복잡한 뺄셈 기능");
+		}
+		
+		plus();
+		minus();
+	}
+	
+	plus();
+	
+	work();
+</script>
+</head>
+<body>
+
+</body>
+</html>

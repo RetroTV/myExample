@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="init();">
+<form>
+	아이디 : <input type="text" id="user-id-2" name="userud" />
+	<button type="button" id="btn-check">중복체크</button>
+	<button type="button" id="btn-use" onclick="useId();">사용</button>
+</form>
+<script type="text/javascript">
+	function init() {
+		//opener를 연 Master의 Window 객체
+		var inputedUserId = opener.document.getElementById("user-id").value;
+		document.getElementById("user-id-2").value = inputedUserId;
+	}
+	
+	function useId() {
+		var checkedUserId = document.getElementById("user-id-2").value;
+		opener.document.getElementById("user-id").value = checkedUserId;
+		
+		self.close();
+	}
+</script>
+</body>
+</html>

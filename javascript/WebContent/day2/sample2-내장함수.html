@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="box-0">뉴스</div>
+	<div id="box-1">연예</div>
+	<div id="box-2">스포츠</div>
+	
+	<div>
+		<button id="btn-start">시작</button>
+		<button id="btn-stop">정지</button>
+	</div>
+</body>
+<script type="text/javascript">
+	//타이머함수 : 지정된 시간이 경과된 후 특정 함수를 실행시키는 함수
+	//setTimeout(함수, 경과시간) : 지정된 시간이 경과된 후 함수를 딱 한번 실행한다.
+	//setInterval(함수, 경과시간) : 지정된 시간이 경과될 때마다 함수를 반복해서 실행한다.
+	//clearTimeout(타이머아이디) : setTimeout으로 실행할 함수를 중지 시킨다
+	//clearInterval(타이머아이디) : setInterval로 실행할 함수를 중지 시킨다
+	
+	var box0 = document.getElementById("box-0");
+	var box1 = document.getElementById("box-1");
+	var box2 = document.getElementById("box-2");
+	
+	var startBtn = document.getElementById("btn-start");
+	var stopBtn = document.getElementById("btn-stop");
+	
+	var boxes = [box0, box1, box2];
+	
+	var loopIndex = 0;
+	function rolling() {
+		
+		var index = loopIndex % 3;
+		hiddenAllBoxes();
+		displayBox(index);
+		
+		loopIndex++;
+	}
+	
+	function hiddenAllBoxes() {
+		boxes.forEach(function(box, i) {
+			box.style.display = "none";
+		})
+	}
+	
+	function displayBox(index) {
+		boxes[index].style.display = "block";
+	}
+	
+	var timerId;
+	
+	startBtn.onclick = function() {
+		rolling();
+		timerId = setInterval(rolling, 3000);
+		startBtn.disabled = true;
+		stopBtn.disabled = false;
+	}
+	
+	stopBtn.onclick = function() {
+		clearInterval(timerId);
+		startBtn.disabled = false;
+		stopBtn.disabled = true;
+	}
+</script>
+</html>

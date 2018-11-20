@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	th, td {
+		padding: 12px;
+		text-align: right;
+	}
+</style>
+</head>
+<body>
+	<table >
+		<colgroup>
+			<col width="5%">
+			<col width="15%">
+			<col width="*">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="10%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><input type="checkbox" /></th>
+				<th>상품번호</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>구매수량</th>
+				<th>구매가격</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox"/></td>
+				<td>10001</td>
+				<td>청바지</td>
+				<td><span>36,000</span>원</td>
+				<td>
+					<input type="number" value="2" style="width: 40px;">개
+					<button>변경</button>
+				</td>
+				<td><span>72,000</span>원</td>
+				<td><button>삭제하기</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox"/></td>
+				<td>12031</td>
+				<td>티셔츠</td>
+				<td><span>16,000</span>원</td>
+				<td>
+					<input type="number" value="3" style="width: 40px;">개
+					<button>변경</button>
+				</td>
+				<td><span>48,000</span>원</td>
+				<td><button>삭제하기</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>51021</td>
+				<td>양말</td>
+				<td><span>1,000</span>원</td>
+				<td>
+					<input type="number" value="5" style="width: 40px;">개
+					<button>변경</button>
+				</td>
+				<td><span>5,000</span>원</td>
+				<td><button>삭제하기</button></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7" style="text-align: right;">총 구매가격 : <strong>125,000</strong>원 </td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	<div>
+		<button>선택삭제</button>
+		<button>전체삭제</button>
+	</div>
+	
+</body>
+</html>

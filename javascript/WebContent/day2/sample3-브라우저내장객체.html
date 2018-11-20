@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form id="user-form" method="post" action="register.do">
+		아이디 : <input type="text" id="user-id" name="userid" />
+		<button type="button" id="btn-id-check">중복검사</button>
+	</form>
+	
+	<hr />
+	
+	<div>
+		<button id="btn-confirm">확인창 버튼</button>
+		<button id="btn-open">팝업창 버튼</button>
+	</div>
+<script type="text/javascript">
+
+	document.getElementById("btn-confirm").onclick = function() {
+		var result = window.confirm("선택한 상품을 삭제하시겠습니까?");
+		
+		if(result) {
+			console.log("삭제작업 진행...");			
+		}
+	}
+
+	document.getElementById("btn-id-check").onclick = function() {
+		
+		var userId = document.getElementById("user-id").value;
+		
+		if (userId) {
+			var left = (screen.width - 400)/2;
+			var top = (screen.height - 400)/2;
+			//window.open(url, name, 옵션);
+			window.open('sample3-popup.html', 'naver', "width=400, height=400, left="+left+", top="+top);
+		} else {
+			alert("아이디를 입력하세요");
+		}
+		
+		/*
+			옵션
+			width=픽셀
+			height=픽셀
+			left=픽셀		x좌표			yes|no|1|0
+			top=픽셀		y좌표			yes|no|1|0
+			titlebar		타이틀바		yes|no|1|0
+			toolbar			툴바			yes|no|1|0
+			location		주소창			yes|no|1|0
+			status			상태표시창		yes|no|1|0
+			resizeable		사이즈 조절		yes|no|1|0
+		*/
+	}
+
+	//브라우저 객체 모델 (BOM:Browser Object Model)
+	//브라우저 객체 모델은 웹 브라우저와 관련된 객체의 집합이다
+	/*
+		window 객체
+			-브라우저 기반 자바스크립트에서 최상위 객체다
+			-<script>태그 안에서 생성하는 모든 변수, 모든 함수, 모든 객체는 전부 window 객체에 저장된다
+			-전역객체다
+			-아래의 다른 브라우저 객체 모델 전부를 담고 있다
+			-주요 메소드
+				window.alert()			경고창을 표시한다
+				window.confirm()		확인(confirm)창을 표시한다
+				window.open()			팝업창(새로운 탭)을 표시한다
+				window.print()			인쇄하기 설정 창을 표시한다
+				window.parseInt()		
+				window.parseFloat()
+				window.setTimeout()
+				window.setInterval()
+		location 객체
+			-브라우저의 주소표시줄과 관련된 객체다
+			-주요 프로퍼티
+				location.href		주소창의 url주소를 담고있다
+				location.host		url주소의 도메인명을 담고있다
+				location.pathname	url주소의 디렉토리 정보를 담고있다
+				location.search		url주소의 쿼리스트링정보를 담고있다
+			-주요 메소드
+				location.reload()	페이지를 새로고침한다
+		navigator 객체
+			-브라우저의 정보와 관련된 객체다
+			-브라우저의 이름, 버전, 운영체제 환경 등을 제공한다
+			-주요 프로퍼티
+				navigator.appName		브라우저 이름
+				navigator.appVersion	브라우저 버전
+				navigator.platform		운영체제 정보
+				navigator.userAgent		브라우저와 관련된 다양한 정보
+			-사용할 일 없음
+		history 객체
+			-방문기록과 관련된 객체다
+			-주요 메소드
+				history.back()		이전 페이지로 이동
+				history.forward()	앞 페이지로 이동
+		screen 객체
+			-운영체제의 화면정보를 가지고 있는 객체다
+			-주요 메소드
+				screen.width	모니터 너비
+				screen.height	모니터 높이
+			-사용할 일 없음
+		document 객체
+			-현재 html 페이지 문서정보를 담고 있는 객체다
+			-현재 페이지에 대한 HTML DOM 객체가 저장되어 있다
+			-document 객체의 주요 API를 사용해서 현재 HTML 문서를 조작할 수 있다
+	*/
+</script>
+</body>
+</html>

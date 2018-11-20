@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//생성자 함수 정의
+	function Student(name, kor, eng, math) {
+		
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.math = math;
+	}
+	
+	//프로토타입에 기능 추가하기
+	Student.prototype.getTotal = function() {
+		return this.kor + this. math + this. eng;
+	}
+	
+	Student.prototype.getAverage = function() {
+		return Math.round(this.getTotal()/3);
+	}
+	
+	var s1 = new Student("홍길동", 60, 65, 80);
+	var s2 = new Student("김유신", 50, 75, 70);
+	var s3 = new Student("강감찬", 80, 45, 90);
+	
+	console.log(s1);
+	console.log(s2);
+	console.log(s3);
+</script>
+</head>
+<body>
+
+</body>
+</html>

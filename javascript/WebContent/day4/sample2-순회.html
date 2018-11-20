@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>엘리먼트 돌아다니기</h1>
+	
+	<div id="box1">
+		<h3>내용</h3>
+		<p>첫번째 내용입니다......</p>
+		<p>두번째 내용입니다......</p>
+		<p>세번째 내용입니다......</p>
+	</div>
+	
+	<div id="box2">
+		<h3>메뉴들</h3>
+		<ul id="menu-list">
+			<li>메뉴1</li>
+			<li>메뉴2</li>
+			<li>메뉴3</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	var p1 = document.getElementById("box1").lastElementChild;
+	console.log(p1.textContent);
+	
+	var p2 = document.querySelector("#box1 p:last-child");
+	console.log(p2.textContent);
+	
+	var p3 = document.getElementById("box1").lastElementChild.previousElementSibling;
+	console.log(p3.textContent);
+	
+	var p4 = document.querySelector("#box1 p:nth-child(3)");
+	console.log(p4.textContent);
+	
+	var menus = document.getElementById("menu-list").children;
+	console.log(menus)
+
+	var menus2 = document.querySelectorAll("#menu-list li");
+	console.log(menus2)
+	
+	var div = document.getElementById("menu-list").parentElement;
+	console.log(div);
+</script>
+</html>

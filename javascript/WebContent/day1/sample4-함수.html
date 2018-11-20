@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	fn1(); //오류아님
+	//fn2(); //오류임
+	
+	//이름 있는 함수의 선언
+	//이름있는 함수는 함수의 선언위치와 관계없이 실행가능하다.
+	function fn1() {
+		console.log("fn1 함수가 실행됨");
+	}
+	
+	//이름 없는 함수의 선언
+	var fn2 = function() {
+		console.log("이름없는 함수가 실행됨");
+	}
+	
+	fn1();
+	fn2(); //이건 오류 아님
+</script>
+</head>
+<body>
+
+</body>
+</html>

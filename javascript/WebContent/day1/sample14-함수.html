@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//함수를 반환하는 함수
+	function hello(name) {
+		
+		return function(greeting) {
+			console.log(name, greeting);
+		}
+	}
+	
+	var fn1 = hello("홍길동");
+	var fn2 = hello("강감찬");
+	
+	fn1("안녕하세요");
+	fn2("반갑습니다");
+</script>
+</head>
+<body>
+
+</body>
+</html>

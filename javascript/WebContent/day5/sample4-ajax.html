@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h3>고객정보</h3>
+		<p>고객명 : <span id="customer-name"></span></p>
+		<p>연락처 : <span id="customer-phone"></span></p>
+		<p>주소 : <span id="customer-addr"></span></p>
+	</div>
+	
+	<div>
+		<button id="btn-search">조회</button>
+	</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("btn-search").onclick = function() {
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "sample4.xml");
+		xhr.send();
+		
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var xmlDoc = xhr.responseXML;
+
+				var name = xmlDoc.getElementsByTagName("name")[0].textContent;
+				var phone = xmlDoc.getElementsByTagName("phone")[0].textContent;
+				var addr = xmlDoc.getElementsByTagName("addr")[0].textContent;
+				
+				document.getElementById("customer-name").textContent = name;
+				document.getElementById("customer-phone").textContent = phone;
+				document.getElementById("customer-addr").textContent = addr;
+			}
+		}
+	}	
+</script>
+</html>

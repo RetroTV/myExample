@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//변수의 스코프 : 전역변수와 지역변수
+	/*
+	전역변수
+		-함수의 바깥에서 선언된 변수
+		-var 키워드 없이 함수 안에서 변수
+		-여러 함수에서 사용가능하다
+	지역변수
+		-함수의 내부에서 선언된 변수
+		-var 키워드로 함수 안에서 선언된 변수
+		-함수 내부에서만 사용가능하다
+	*/
+	//전역 변수
+	var globalVar = "홍길동";
+	
+	function fn1() {
+		console.log("fn1 - 전역변수 사용", globalVar);
+		//전역변수 : 권장하지 않는 방식
+		globalVar2 = "김유신";
+		//지역변수
+		var localVar = "강감찬";
+
+		console.log("fn2 - 전역변수 사용", globalVar2);
+		console.log("지역변수 사용", localVar);
+	}
+	
+	function fn2() {
+		console.log("fn1 - 전역변수 사용", globalVar);		
+		console.log("fn2 - 전역변수 사용", globalVar2);
+	}
+	
+	fn1();
+	fn2();
+	
+		console.log("fn1 - 전역변수 사용", globalVar);		
+		console.log("fn2 - 전역변수 사용", globalVar2);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

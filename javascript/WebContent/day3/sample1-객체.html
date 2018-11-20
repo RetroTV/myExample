@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//객체 생성하기
+	
+	/*
+		생성자함수 (자바의 생성자 함수랑은 아무런 관련이 없다)
+			-객체를 생성할 때 사용되는 함수
+			-new 키워드와 함께 실행하면 객체가 생성된다
+			
+		function a() {}
+	
+		//함수실행
+		a();		<- undefined 뜸
+		
+		new a();
+		
+		생성자함수의 실행 특징
+			-1. 새로운 객체를 생성한다
+			-2. 생성자 함수의 this로 새로운 객체가 전달된다
+			-3. 생성자 함수에서 return문이 따루 구현되지 않았다면, 생성자 함수의 실행이 완료되고 난 후 새로 생성했던 객체가 반환된다
+			*생성자함수에서는 this로 전달된 객체에 새로운 속성이나 메소드를 추가해서 빈 객체를 채운다
+	*/
+	
+	var person1 = {
+		name:"홍길동",
+		dept:"영업부",
+		salary:200,
+		hireDate:"2010-01-01"
+	};
+		
+	var person2 = {
+		name:"김유신",
+		dept:"기술부",
+		salary:400,
+		hireDate:"2013-02-02"
+	};
+	
+	//생성자 함수
+	function Person(name, dept, salary, hireDate) {
+		
+		this.name = name;
+		this.dept = dept;
+		this.salary = salary;
+		this.hireDate = hireDate;
+		this.toString = function() {
+			return this.name + ", " + this.dept + ", " + this.salary + ", " + this.hireDate
+		}
+	}
+	
+	var person3 = new Person("류관순", "교육팀", 250, "2010-03-14");
+	var person4 = new Person("이순신", "영업팀", 550, "2010-01-14");
+	var person5 = new Person("강감찬", "마케팅팀", 350, "2010-06-14");
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

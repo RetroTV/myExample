@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>박스오피스 조회</h1>
+
+	<p>
+		조회날짜 : <input type="date" id="search-date"><button id="btn-search">조회</button>
+	</p>
+	
+	<h3>조회결과</h3>
+	<table border="1" style="width:100%;">
+		<thead>
+			<tr>
+				<th>순위</th>
+				<th>증감</th>
+				<th>제목</th>
+				<th>개봉일</th>
+				<th>당일 관객수</th>
+				<th>누적 관객수</th>
+			</tr>
+		</thead>
+		<tbody id="movie-box">
+		</tbody>
+	</table>
+	<script type="text/javascript">
+      document.getElementById("btn-search").onclick = function(event) {
+         var searchDate = document.getElementById("search-date").value;
+         if(!searchDate) {
+            alert("조회날짜를 입력하세요");
+            return false;
+         }
+         searchDate = searchDate.replace(/-/g, '');
+         
+         var xhr = new XMLHttpRequest();  // url 부분 끝에 보면 타겟데이터가 보이는데 api 문서에서 보면 날짜를 대입해서 써먹으라고 나와있다. 여기서는 날짜를 바꿔서 써먹는 기능을 구현할 것.
+         xhr.open("GET", "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=430156241533f1d058c603178cc3ca0e&targetDt=" + searchDate);
+         xhr.send();
+         
+         xhr.onreadystatechange = function() {
+            
+            if (xhr.readyState == 4 && xhr.status == 200) {
+               //응답데이터 처리
+               var data = xhr.responseText;
+               
+               var boxoffice = JSON.parse(data);
+               
+               var movieArray = boxoffice.boxOfficeResult.dailyBoxOfficeList;
+               
+               var rows = "";
+               for(i=0; i<movieArray.length; i++) {
+                  var movie = movieArray[i];
+                  
+                  var rank = movie.rank;
+                  var rankInten = movie.rankInten;
+                  var name = movie.movieNm;
+                  var openDt = movie.openDt;
+                  var audiCnt = movie.audiCnt;
+                  var audiAcc = movie.audiAcc;
+                  
+                  rows += "<tr>";
+                  rows += "<td>"+rank+"</td>";
+                  rows += "<td>"+rankInten+"</td>";
+                  rows += "<td>"+name+"</td>";
+                  rows += "<td>"+openDt+"</td>";
+                  rows += "<td>"+audiCnt+"</td>";
+                  rows += "<td>"+audiAcc+"</td>";
+                  rows += "</tr>";
+               }
+               
+               document.getElementById("movie-box").innerHTML=rows;
+            }
+         }
+      }
+   </script>
+</body>
+</html>
