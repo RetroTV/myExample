@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	document.getElementById("btn-search").onclick = function(event) {
+		
+		$('tbody td').css("color", "black");
+		
+		// 옵션값을 조회하기
+		var opt = $("#option-box").val();
+		// 입력된 검색어를 조회하기
+		var keyword = $("#keyword-box").val();
+		// 옵션값을 기준으로 구분해서 id를 찾아서 하이라이트 시키기
+		
+		if (opt == 'title') {
+			$("tbody td:nth-child(1):contains('"+keyword+"')").css('color', 'red');
+		} else if (opt == "author") {
+			$("tbody td:nth-child(2):contains('"+keyword+"')").css('color', 'red');
+		} else if (opt == 'publisher') {
+			$("tbody td:nth-child(3):contains('"+keyword+"')").css('color', 'red');
+		} else if (opt == 'price') {
+			$("tbody td:nth-child(4):contains('"+keyword+"')").css('color', 'red');
+		}
+	}
+})
+</script>
+</head>
+<body>
+	<div>
+		<select id="option-box" name="option">
+			<option value="title">제목</option>
+			<option value="author">저자</option>
+			<option value="publisher">출판사</option>
+			<option value="price">가격</option>
+		</select>
+		<input type="text" id="keyword-box" name="keyword" />
+		<button id="btn-search">검색</button>
+	</div>
+	
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>제목</th>
+					<th>저자</th>
+					<th>출판사</th>
+					<th>가격</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>이것이 자바다</td>
+					<td>신용권</td>
+					<td>한빛미디어</td>
+					<td>35000</td>
+				</tr>
+				<tr>
+					<td>골든아워</td>
+					<td>이국종</td>
+					<td>흐름출판</td>
+					<td>15000</td>
+				</tr>
+				<tr>
+					<td>12가지 인생의 법칙</td>
+					<td>조던 피터슨</td>
+					<td>메이븐</td>
+					<td>17000</td>
+				</tr>
+				<tr>
+					<td>언어의 온도</td>
+					<td>이기주</td>
+					<td>말글터</td>
+					<td>14000</td>
+				</tr>
+				<tr>
+					<td>열두 발자국</td>
+					<td>정재승</td>
+					<td>어크로스</td>
+					<td>16000</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+</html>

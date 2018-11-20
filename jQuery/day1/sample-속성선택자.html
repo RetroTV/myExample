@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {	
+	$("div[id^=box]").css('backgroundColor', 'yellow');
+	
+	$("[type='submit']").hide();
+	
+	$("span[id$='number']").css('color', 'red');
+	
+	$("a[title~='포탈']").css('backgroundColor', 'yellow');
+	$("a[title*='포탈']").css('border', '2px solid lightgreen');
+})	
+</script>
+</head>
+<body>
+	<div id="header">
+		<p>헤더</p>
+		<p>
+			<a href="#" title="다음 포탈 뉴스제공">다음</a>
+			<a href="#" title="네이버 포탈 뉴스제공">네이버</a>
+			<a href="#" title="구글 검색포탈 뉴스제공">구글</a>
+			<a href="#" title="SNS 소셜네트워커">인스타그램</a>			
+		</p>
+	</div>
+	
+	<div id="box-1">
+		<p>첫번째 박스</p>
+		<p>
+			<button type="reset">취소</button>
+			<button type="submit">수정</button>
+		</p>
+	</div>
+	
+	<div id="box-2">
+		<p>두번째 박스</p>
+		<button type="reset">취소</button>
+		<button type="submit">등록</button>
+	</div>
+	
+	<div id="footer">
+		<p>푸터</p>
+		<p>
+			<span id="tel-number">02-1111-1111</span>
+			<span id="fax-number">02-2222-2222</span>
+			<span id="phone-number">010-3333-3333</span>
+			<span id="addr">서울특별시 종로구 봉익동</span>
+		</p>
+	</div>
+</body>
+</html>

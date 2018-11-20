@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#site-list").find("a[title*='국내']").css('color', 'red');
+	$("#sns-list").find("a[title*='국내']").css('color', 'green');
+})
+</script>
+</head>
+<body>
+	<div>
+		<h3>포털 사이트</h3>
+		<ul id="site-list">
+			<li><a href="http://www.daum.net" title="국내 포털사이트">다음</a></li>
+			<li><a href="http://www.naver.com" title="국내 포털사이트">네이버</a></li>
+			<li><a href="http://www.google.net" title="외국 포털사이트">구글</a></li>
+			<li><a href="http://www.nate.com" title="국내 포털사이트">네이트</a></li>
+			<li><a href="http://www.zum.com" title="국내 포털사이트">zum</a></li>
+			<li><a href="http://www.yahoo.co.kr" title="외국 포털사이트">야후</a></li>
+		</ul>
+		
+		<h3>SNS </h3>
+		<ul id="sns-list">
+			<li><a href="http://www.facebook.com" title="외국 SNS사이트">페이스북</a></li>
+			<li><a href="http://www.twitter.com" title="외국 SNS사이트">트위터</a></li>
+			<li><a href="http://www.instagram.com" title="외국 SNS사이트">인스타그램</a></li>
+			<li><a href="http://www.kakaostory.co.kr" title="국내 SNS사이트">카카오스토리</a></li>
+			<li><a href="http://www.dreamwiz.com" title="국내 SNS사이트">드림위즈</a></li>
+		</ul>
+	</div>
+</body>
+</html>

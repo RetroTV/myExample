@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("p:odd").css('color', 'red');
+	$("p").filter(":odd").css('color', 'red');
+	
+	$("p:eq(0)").css('background-color', 'green');
+	$("p").filter(':eq(0)').css('background-color', 'green');
+	$("p").eq(0).css('background-color', 'green');
+	
+	/* $('p span').filter(function(index, item) {
+		var score= parseInt(item.textContent);
+		if(score >= 80) {
+			return true;
+		} else {
+			return false;	
+		}
+	}).css('font-size','50px'); */
+	
+	$('p span').filter(function(index, item) {
+	// 반복 대상이 되는 함수에 this는  현재 반복중인 엘리먼트가 들어있다
+		var score = parseInt(this.textContent);
+		return score >= 90;
+	
+	}).css('font-size','50px');
+})
+</script>
+</head>
+<body>
+	<div>
+		<p>김유신</p>
+		<p>강감찬</p>
+		<p>이수신</p>
+		<p>이봉창</p>
+		<p>김구</p>
+	</div>
+	
+	<div>
+		<h3>평균점수</h3>
+		<p>김유신 <span>90</span></p>
+		<p>강감찬 <span>80</span></p>
+		<p>이수신 <span>70</span></p>
+		<p>이봉창 <span>60</span></p>
+		<p>김구 <span>50</span></p>
+	</div>
+</body>
+</html>

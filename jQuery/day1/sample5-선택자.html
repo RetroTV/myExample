@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('h1').css('color', 'red');
+	
+	$('div.intro').css('border', '2px solid red');
+	
+	$('.intro p').css('color', 'green');
+	
+	$('li:first').css('color', 'yellow');
+	$('li:eq(0)').css('color', 'yellow');
+	$('#list-friends li:first').css('color', 'yellow');
+	$('#list-friends li:first-child').css('color', 'yellow');
+	$('#list-friends li:nth-child(1)').css('color', 'yellow');
+	
+	$('li:eq(2)').css('color', 'red');
+	$('#list-friends li:nth-child(3)').css('color', 'red');
+	
+	$('li:not(:first)').css('border', '2px solid green');
+	
+	$("p:has(span)").css('backgroundColor', 'pink');
+	
+	$('tbody tr:odd').css('backgroundColor', '#ccc');
+	// $('tbody tr:nth-child(2n)').css('color', 'red');
+	
+	$("td:contains('김유신')").css('font-size', '30px');
+	
+	$('td:last-child').css('color', 'green');
+})
+</script>
+</head>
+<body>
+	<h1>HomePage</h1>
+	
+	<div class="intro">
+		<p>내 이름은 홀 <span id="last-name">길동</span>입니다</p>
+		<p id="my-addr">서울특별시 종로구입니다</p>
+		<p>나는 많은 친구들이 있습니다</p>
+	</div>
+	
+	<ul id="list-friends">
+		<li>이순신</li>
+		<li>김유신</li>
+		<li>강감신</li>
+		<li>류관순</li>
+	</ul>
+	
+	<h3>친구 정보</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>성별</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>이순신</td><td>남자</td>
+			</tr>
+			<tr>
+				<td>김유신</td><td>남자</td>
+			</tr>
+			<tr>
+				<td>강감찬</td><td>남자</td>
+			</tr>
+			<tr>
+				<td>류관순</td><td>여자</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

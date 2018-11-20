@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("p span").filter(function(index, item) {
+		//item <- span 엘리먼트
+		var score = $(item).text();
+		//혹은
+		//var score = $(this).text(); <-- 이경우엔 위에 index랑 item을 안써도 된다
+		return score >= 70;
+	}).css("color", "red");
+})
+</script>
+</head>
+<body>
+	<h3>학생 리스트</h3>
+	<p>김유신 <span>90</span></p>
+	<p>강감찬 <span>80</span></p>
+	<p>이순신 <span>70</span></p>
+	<p>이봉창 <span>60</span></p>
+	<p>김구 <span>50</span></p>
+</body>
+</html>

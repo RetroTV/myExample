@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	document.getElementById("btn-search").onclick = function(event) {
+	var grade = $(":radio[name='ch-grade']:checked").val();
+	
+	$('tbody tr').css('color', 'black');
+	$("tbody td:first-child:contains("+grade+")").parent().css('color', 'red');
+	}
+})
+</script>
+</head>
+<body>
+	<div>
+		<input type="radio" value="1" name="ch-grade" checked="checked"> 1학년
+		<input type="radio" value="2" name="ch-grade"> 2학년
+		<input type="radio" value="3" name="ch-grade"> 3학년
+		<input type="radio" value="4" name="ch-grade"> 4학년
+		
+		<button id="btn-search">조회</button>
+	</div>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>학년</th>
+				<th>학과</th>
+				<th>이름</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>전자공학</td>
+				<td>홍길동</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>기계공학</td>
+				<td>나무</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>생명공학</td>
+				<td>김유신</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>전기공학</td>
+				<td>이순신</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

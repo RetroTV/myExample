@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	//.parent()
+	console.log($("#employee-list").parent());
+	//.parents()
+	console.log($("#employee-list").parents());
+	
+	console.log($("#employee-list").parents("#employee-box"));
+	
+	console.log($("#employee-list").parents("div"));
+	
+	$("a[title='부팀장']").parent().find("a").css("color", "red");
+	
+	// $("li.active").siblings().hide();
+	$("li:not(.active)").hide();
+	
+	$("li")[0]
+	
+	//3초동안 사라지게 하는 애니메이션
+	//var el = document.getElementById("contents");
+	//혹은
+	//var el = $("#contents");
+	//$(el).hide(3000);
+})
+</script>
+</head>
+<body>
+	<div id="contents">
+		<h3>사원 리스트</h3>
+		
+		<div id="employee-box">
+			<h3>사원 리스트</h3>
+			<ul id="employee-list">
+				<li><a href="emp.do?no=1" title="팀장">김유신</a></li>
+				<li><a href="emp.do?no=2">강감찬</a></li>
+				<li class="active"><a href="emp.do?no=3">이순신</a></li>
+				<li><a href="emp.do?no=4" title="부팀장">류관순</a></li>
+				<li><a href="emp.do?no=5">홍길동</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {margin: 10px; padding:5px; border: 2px solid lightgray;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("p:first").css("color", "red");
+	$("p:last").css("color", "green");
+	
+	$("p:first-child").css("text-decoration", "underline")
+	$("p:first-of-type").css("border", "2px solid red");
+	
+	$("p:even").css("background", "yellow");
+	$("p:eq(1)").text("1111111111111");	// p중에서 2번째를 선택한다
+	$("p:gt(5)").text("5555555555555");	// p중에서 6번째보다 큰 모든 p를 선택한다
+})
+</script>
+</head>
+<body>
+	<div>
+		<p>1번 p 엘리먼트</p>	
+		<p>2번 p 엘리먼트</p>	
+		<p>3번 p 엘리먼트</p>	
+	</div>
+	<div>
+		<h3>h3 엘리먼트</h3>	
+		<p>4번 p 엘리먼트</p>	
+		<p>5번 p 엘리먼트</p>	
+		<p>6번 p 엘리먼트</p>	
+		<p>7번 p 엘리먼트</p>	
+	</div>
+	<div>
+		<p>8번 p 엘리먼트</p>	
+		<p>9번 p 엘리먼트</p>	
+		<p>10번 p 엘리먼트</p>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("div").css('backgroundColor', 'lightgrey');
+	$("#box-2 p").css('color', 'red');
+	$(".summary").css("color", "green");
+	
+	$("p a").css("border", "2px solid red");
+}) 
+</script>
+</head>
+<body>
+	<div id="box-1">
+		<a href="http://daum.net">daum</a>
+		<p>
+			<a href="http://google.com">google</a>
+			<a href="http://google.com">google</a>
+		</p>
+	</div>
+	<ul>
+		<li>coffee</li>
+		<li>coffee</li>
+		<li>coffee</li>
+	</ul>
+	<p class="summary">this is text</p>
+	<p class="summary">this is text</p>
+	<p class="summary">this is text</p>
+	<div id="box-2">
+		<p>this is p in div</p>
+		<p>this is p in div</p>
+	</div>
+</body>
+</html>
