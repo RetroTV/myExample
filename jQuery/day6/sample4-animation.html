@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	$(function() {
+  		$("#btn-start").click(function() {
+  			$("#box").animate({left:"400px"}, 3000).animate({top:"400px"}, 3000);
+  		});
+  		//지금 실행중인 동작을 마칠때까지는 작동함
+  		$("#btn-stop-1").click(function() {
+  			$("#box").clearQueue();
+  		});
+  		//현재 상태를 멈추고 다음 동작을 실행함
+  		$("#btn-stop-2").click(function() {
+  			$("#box").stop();
+  		});
+  		//현재 진행중에 멈추고 큐에 상태는 남아있음(재시작하면 그 자리부터 시작함)
+  		$("#btn-stop-3").click(function() {
+  			$("#box").stop(true);
+  		});
+  		//현재 행동의 끝부분으로 이동하고 큐를 삭제함
+  		$("#btn-stop-4").click(function() {
+  			$("#box").stop(true, true);
+  		});
+  	})
+  </script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-primary" id="btn-start">start</button>
+			<button class="btn btn-danger" id="btn-stop-1">stop1</button>
+			<button class="btn btn-danger" id="btn-stop-2">stop2</button>
+			<button class="btn btn-danger" id="btn-stop-3">stop3</button>
+			<button class="btn btn-danger" id="btn-stop-4">stop4</button>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="box" style="width: 100px; height: 100px; background-color: red; position: relative;"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

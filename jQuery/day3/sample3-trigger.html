@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	span {
+		display: inline-block;
+		padding: 3px;
+		width: 100px;
+		border: 1px solid black;
+		cursor: pointer;}
+	span:hover {
+		border: 1px solid gree;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	var $sections = $("#content-section [id$='section']").hide();
+	
+	$("#menu-bar span").click(function(event) {
+		$sections.hide();
+		
+		var menu = $(this).attr("id");
+		$("#" + menu + "-section").show();
+	});
+	
+	var sectionNames = ["news", "ent", "sports"];
+	var count = 1;
+	setInterval(function() {
+		var sectionName = sectionNames[count%3];
+		$("#" + sectionName).trigger("click");
+		count++;
+	}, 3000);
+	
+	$("#news").trigger("click");
+})
+</script>
+</head>
+<body>
+	<div id="menu-bar">
+		<span id="news">뉴스</span>
+		<span id="ent">연예</span>
+		<span id="sports">스포츠</span>
+	</div>
+	<div id="content-section">
+		<div id="news-section">
+			<h3>뉴스목록</h3>
+			<p>화해치유재단 해산 결정</p>
+			<p>민주노총 오늘 총파업 돌입</p>
+			<p>검찰 '판사 블랙리스트' 4년치 확보</p>
+		</div>
+		<div id="ent-section">
+			<h3>연예목록</h3>
+			<p>화해치유재단 해산 결정</p>
+			<p>민주노총 오늘 총파업 돌입</p>
+			<p>검찰 '판사 블랙리스트' 4년치 확보</p>
+		</div>
+		<div id="sports-section">
+			<h3>스포츠목록</h3>
+			<p>화해치유재단 해산 결정</p>
+			<p>민주노총 오늘 총파업 돌입</p>
+			<p>검찰 '판사 블랙리스트' 4년치 확보</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	/*
+		x : 첫번째 숫자
+		y : 두번째 숫자
+		fn : 계산결과를 전달받아 처리하는 함수
+	*/
+	function get(x, y, fn) {
+		var result = x + y;
+		
+		fn(result);
+	}
+	
+	get(1, 3, function(data) {
+		console.log(data);
+	});
+	get(1, 3, function(data) {
+		console.log("결과값", data)
+	});
+	get(1, 3, function(data) {
+		alert(data);
+	});
+</script>
+</head>
+<body>
+
+</body>
+</html>

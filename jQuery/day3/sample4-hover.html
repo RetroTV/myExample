@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img {
+		margin: 10px;
+		padding: 5px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("img").css("opacity", "0.5");
+	/*
+	$("img").mouseenter(function(event) {
+		$(this).css("opacity", "1");
+	});
+	$("img").mouseleave(function(event) {
+		$(this).css("opacity", "0.5");
+	});
+	*/
+	
+	//$("img").on({"mouseenter":function(event) {$(this).css("opacity", "1");}, "mouseleave":function(event) {$(this).css("opacity", "0.5");}});
+	
+	$("img").hover(function(event) {
+		$(this).css("opacity", "1");
+	}, function(event) {
+		$(this).css("opacity", "0.5");
+	});
+})
+</script>
+</head>
+<body>
+	<div>
+		<img src="images/001.jpg" style="width: 200px; height: 200px;"/>
+		<img src="images/002.jpg" style="width: 200px; height: 200px;"/>
+		<img src="images/003.jpg" style="width: 200px; height: 200px;"/>
+		<img src="images/004.jpg" style="width: 200px; height: 200px;"/>
+		<img src="images/005.jpg" style="width: 200px; height: 200px;"/>
+	</div>
+</body>
+</html>

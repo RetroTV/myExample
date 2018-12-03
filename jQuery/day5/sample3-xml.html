@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+  	#wait {
+  		display: none;
+  		position: absolute;
+  		width: 200px;
+  		height: 200px
+  	}
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function() {
+	
+	$(document).ajaxStart(function() {
+		$("#wait").show();
+	});
+	$(document).ajaxComplete(function() {
+		$("#wait").hide();		
+	});
+	
+	function formatNumber(number) {
+		return new Number(number).toLocaleString();
+	}
+	
+	$("#btn-search-boxoffice").click(function() {
+		
+		var windowWidth = $(window).width();
+		$("#wait").css({top:"45%", left:(windowWidth - 200)/2})
+		
+		var searchDate = $("#search-date").val().replace(/-/g, "");
+
+		$("#boxoffice-table tbody").empty();
+		//key=430156241533f1d058c603178cc3ca0e&targetDt=20120101
+		
+		//ajax 시작
+		$.ajax({
+			type: "GET",
+			url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
+			data: {key:'430156241533f1d058c603178cc3ca0e', targetDt:searchDate},
+			dataType: "xml",
+			//beforeSend: function() {
+			//	$("#wait").show();
+			//},
+			//complete: function() {
+			//	$("#wait").hide();
+			//},
+			success: function(xmlDom) {
+				$(xmlDom).find("dailyBoxOffice").each(function(index, item) {
+					var 랭킹 = $(item).find("rank").text();
+					var 증감 = $(item).find("rankInten").text();
+					var 제목 = $(item).find("movieNm").text();
+					var 개봉일 = $(item).find("openDt").text();
+					var 당일관객 = $(item).find("audiCnt").text();
+					var 누적관객 = $(item).find("audiAcc").text();
+					var 매출액 = $(item).find("salesAcc").text();
+					
+					var row = "<tr>";
+					row += "<td class='text-center'>"+랭킹+"</td>";
+					row += "<td class='text-center'>"+증감+"</td>";
+					row += "<td>"+제목+"</td>";
+					row += "<td>"+개봉일+"</td>";
+					row += "<td class='text-right'>"+formatNumber(당일관객)+"</td>";
+					row += "<td class='text-right'>"+formatNumber(누적관객)+"</td>";
+					row += "<td class='text-right'>"+formatNumber(매출액)+"</td>";
+					row += "</tr>";
+					
+					$("#boxoffice-table tbody").append(row);
+				});
+			}
+		});
+	})
+})
+</script>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1>박스 오피스 조회</h1>
+	</div>
+	<div class="row">
+		<div class="col-offset-xs-2 col-xs-8">
+			<form class="form-inline" id="search-form">
+				<div class="form-group">
+					<label>조회날짜</label>
+					<input type="date" class="form-control" id="search-date" name="searchDate" />
+				</div>
+				<button type="button" class="btn btn-default" id="btn-search-boxoffice">조회</button>
+			</form>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">영화 리스트</div>
+				<table class="table table-striped table-condensed" id="boxoffice-table">
+					<colgroup>
+					<col width="6%">
+					<col width="6%">
+					<col width="*">
+					<col width="12%">
+					<col width="12%">
+					<col width="12%">
+					<col width="12%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>순위</th>
+							<th>증감</th>
+							<th>제목</th>
+							<th>개봉일</th>
+							<th>당일 관객수</th>
+							<th>누적 관객수</th>
+							<th>누적 매출액</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="wait"><img src="../img/loading.gif" width="200px" height="200px"/></div>
+</div>
+</body>
+</html>

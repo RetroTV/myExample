@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+	$(function() {
+		
+		function clearForm() {
+			$("#student-form :input[name='name']").val("");
+			$("#student-form :input[name='dept']").val("");
+			$("#student-form :input[name='grade']").val(1);
+			$("#student-form :radio[name='rest']:last").prop("checked", true);
+			$("#student-form :radio[name='graduate']:last").prop("checked", true);
+		}
+		
+		//미래에 생길 tr에 대해서
+		//나중에 tbody의 th들은 전부 td로 바꿀것
+		$("#student-table tbody").on("click", "tr", function() {
+			$(this).toggleClass("success").siblings().removeClass("success");
+			
+			var name = $(this).find("th").eq(0).text();
+			var dept = $(this).find("th").eq(1).text();
+			var grade = $(this).find("th").eq(2).text();
+			var rest = $(this).find("th").eq(3).text();
+			var graduate = $(this).find("th").eq(4).text();
+			
+			$("#student-form :input[name='name']").val(name);
+			$("#student-form :input[name='dept']").val(dept);
+			$("#student-form :input[name='grade']").val(grade);
+			$("#student-form :radio[name='rest']").filter("[value='"+rest+"']").prop("checked", true);
+			$("#student-form :radio[name='graduate']").filter("[value='"+graduate+"']").prop("checked", true);
+			
+			if ($(this).is(".success")) {
+				$("#btn-add").text("수정").removeClass("btn-primary").addClass("btn-warning");				
+			} else {
+				$("#btn-add").text("추가").removeClass("btn-warning").addClass("btn-primary");								
+			}
+		})
+		
+		$("#student-form").submit(function(event) {
+			event.preventDefault();
+			/*
+			var name = $(this).find("[name=name]").val();
+			var dept = $(this).find("[name=dept]").val();
+			var grade = $(this).find("[name=grade]").val();
+			var rest = $(this).find("[name=rest]:checked").val();
+			var graduate = $(this).find("[name=graduate]:checked").val();
+			*/
+			
+			var name = $("#student-form :input[name='name']").val();
+			var dept = $("#student-form :input[name='dept']").val();
+			var grade = $("#student-form :input[name='grade']").val();
+			var rest = $("#student-form :input[name='rest']:checked").val();
+			var graduate = $("#student-form :input[name='graduate']:checked").val();
+			
+			var buttonType = $("#btn-add").text();
+			
+			if (buttonType === "추가") {
+				var htmlContent = "<tr class='student-group-item'><th>"+name+"</th><th>"+dept+"</th><th>"+grade+"</th><th>"+rest+"</th><th>"+graduate+"</th><th><button class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-trash'></span></button></th></tr>";
+				$("#student-table tbody").append(htmlContent);			
+				
+			} else if (buttonType === "수정") {
+				var $tr = $("#student-table tbody tr.success");
+				$tr.find("th:eq(0)").text(name);
+				$tr.find("th:eq(1)").text(dept);
+				$tr.find("th:eq(2)").text(grade);
+				$tr.find("th:eq(3)").text(rest);
+				$tr.find("th:eq(4)").text(graduate);
+				
+				$tr.removeClass("success");
+				$("#btn-add").text("추가").removeClass("btn-warning").addClass("btn-primary");
+				
+			}
+			clearForm();
+		});
+		
+		$("#student-table tbody").on("click", ".btn-danger", function(evnet) {
+			event.stopPropagation();
+			
+			$(this).parents("tr").remove();
+		})
+	})
+</script>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>dom 연습</h1>
+		</div>
+		<div class="row">
+			<div class="col-xs-offset-2 col-xs-8">
+				<form id="student-form" class="well">
+					<div class="form-group">
+						<label>이름</label>
+						<input type="text" class="form-control" name="name"/>
+					</div>
+					<div class="form-group">
+						<label>학과</label>
+						<input type="text" class="form-control" name="dept"/>
+					</div>
+					<div class="form-group">
+						<label>학년</label>
+						<select class="form-control" name="grade">
+							<option value="1">1학년</option>
+							<option value="2">2학년</option>
+							<option value="3">3학년</option>
+							<option value="4">4학년</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>휴학여부</label>
+						<div class="radio">
+							<label><input name="rest" type="radio" value="Y"/>예</label>
+							<label><input name="rest" type="radio" value="N" checked="checked"/>아니오</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>졸업가능 여부</label>
+						<div class="radio">
+							<label><input name="graduate" type="radio" value="Y"/>예</label>
+							<label><input name="graduate" type="radio" value="N" checked="checked"/>아니오</label>
+						</div>
+					</div>
+					<hr/>
+					<div class="form-group text-right">
+						<button type="submit" class="btn btn-primary btn-sm" id="btn-add">추가</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-xs-offset-2 col-xs-8">
+			<div class="panel panel-info">
+				<div class="panel-heading">학생 리스트</div>
+				<table class="table" id="student-table">
+					<colgroup>
+						<col width="20%">
+						<col width="20%">
+						<col width="10%">
+						<col width="20%">
+						<col width="20%">
+						<col width="10%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>이름</th>
+							<th>학과</th>
+							<th>학년</th>
+							<th>휴학여부</th>
+							<th>졸업가능</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="student-list">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

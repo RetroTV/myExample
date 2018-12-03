@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="btn-box">
+		<button id="btn-add-field">+</button>
+		<button id="btn-del-field">-</button>
+	</div>
+	<div id="field-box">
+		<p>경력사항 : <input type='text' placeholder='근무처' /> <input type='text' placeholder='근무개월수' /></p>
+	</div>
+</body>
+<script type="text/javascript">
+//기본
+//+를 누르면 경력사항 입력폼을 마지막에 추가함
+//$("#field-box").append(html 컨텐츠);
+//-를 누르면 마지막 경력사항 입력폼을 삭제함
+
+//추가기능
+//+를 누르면 마지막에 추가
+//선택된 경력사항이 있으면 바로 다음에 추가
+//$(선택된 경력사항).after(html 컨텐츠);
+//-를 누르면 마지막 경력사항 입력폼을 삭제하고
+//선택된게 있으면 선택한 것만 삭제함
+//한개만 남았을 때는 삭제하지 않음
+
+$(function() {
+	
+	$("#btn-add-field").click(function() {
+		if ($("#field-box p").length == 4) {
+			$(this).off("click");
+		}
+			var htmlContent = "<p>경력사항 : <input type='text' placeholder='근무처' /> <input type='text' placeholder='근무개월수' /></p>";
+			$("#field-box").append(htmlContent);
+	});
+	
+	$("#btn-del-field").click(function() {
+		if($("#field-box p").length == 2) {
+			$(this).off("click");
+		}
+			$("#field-box p:last-child").remove();
+	});
+})
+</script>
+</html>

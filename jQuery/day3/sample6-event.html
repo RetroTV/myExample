@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#menu-panel {
+		position: absolute;
+		width: 200px;
+		height: 500px;
+		left: -180px;
+		background-color: lightgreen;
+	}
+	
+	#menu-panel p {
+		padding: 4px;
+		width: 100px;
+		margin-left: 60px;
+		border: 1px solid black;
+	}
+	
+	#section-box {
+		position: absolute;
+		left: 220px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	var isExtension = false;
+	$("#menu-panel").click(function() {
+		if(isExtension) {
+			$(this).css("left", "-180px");
+			isExtension = false;
+		} else {
+			$(this).css("left", "-20px");
+			isExtension = true;
+		}
+	});
+	
+	$("#section-box div").hide();
+	$("#menu-panel p").click(function() {
+		$("#section-box div").hide();
+		
+		var menu = $(this).attr("id");
+		$("#" + menu + "-section").show();
+	})
+})
+</script>
+</head>
+<body>
+	<div id="menu-panel">
+		<p id="home">홈</p>
+		<p id="news">뉴스</p>
+		<p id="about">정보</p>
+		<p id="help">도움</p>
+	</div>
+	<div id="section-box">
+		<div id="home-section">
+			<h3>home</h3>
+			<p>내용</p>
+		</div>
+		<div id="news-section">
+			<h3>news</h3>
+			<p>내용</p>
+		</div>
+		<div id="about-section">
+			<h3>about</h3>
+			<p>내용</p>
+		</div>
+		<div id="help-section">
+			<h3>help</h3>
+			<p>내용</p>
+		</div>
+	</div>
+</body>
+</html>

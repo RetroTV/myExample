@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("a").click(function(event) {
+		var imgPath = $(this).attr("href");
+		$("#image-box").attr("src", imgPath);
+		return false;
+	});
+	
+	$("#login-form").submit(function(event) {
+		if ($("#user-id").val() == "") {
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		if ($("#user-pwd").val() == "") {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+		return true;
+	});
+})
+</script>
+</head>
+<body>
+	<div>
+		<img alt="그림" src="images/001.jpg" style="width: 200px; height: 200px;" />
+	</div>
+	<div>
+		<a href="images/001.jpg"><img alt="그림" src="images/001.jpg" style="width: 50px; height: 50px;" /></a>
+		<a href="images/002.jpg"><img alt="그림" src="images/002.jpg" style="width: 50px; height: 50px;" /></a>
+		<a href="images/003.jpg"><img alt="그림" src="images/003.jpg" style="width: 50px; height: 50px;" /></a>
+		<a href="images/004.jpg"><img alt="그림" src="images/004.jpg" style="width: 50px; height: 50px;" /></a>
+		<a href="images/005.jpg"><img alt="그림" src="images/005.jpg" style="width: 50px; height: 50px;" /></a>
+	</div>
+	
+	<form id="login-form">
+		<p><input type="text" id="user-id" name="userid" placeholder="아이디를 입력하세요"></p>
+		<p><input type="password" id="user-pwd" name="userpwd" placeholder="비밀번호를 입력하세요"></p>
+		<input type="submit" value="login" />
+	</form>
+</body>
+</html>

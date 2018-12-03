@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  (function($) {
+	  $.fn.accordion = function() {
+		  var $elements = this;		//this는 jQuery 객체 <-- $("#box") 실행결과
+		  $elements.find("h3").addClass("bg-primary")
+		  					  .css("padding", "3px")
+		  					  .click(function() {
+		  						  //this는 h3중에서 사용자가 클릭하는 그 h3 엘리먼트
+				  				  $(this).next().find("p").slideToggle(1000, "linear");
+			  				  });
+		  $elements.find("div").find("p").hide();
+	  }
+  }(jQuery))
+  
+  $(function() {
+	  $("#box").accordion();
+  })
+  </script>
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		jQuery 플러그인 만들기
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="box">
+				<h3>제목</h3>
+				<div>
+					<p>첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 첫번째 내용 </p>
+				</div>
+				<h3>제목2</h3>
+				<div>
+					<p>두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 두번째 내용 </p>
+				</div>
+				<h3>제목3</h3>
+				<div>
+					<p>세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 세번째 내용 </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

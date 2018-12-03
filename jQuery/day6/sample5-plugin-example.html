@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+	/*
+	$.fn.message = function(text) {
+		this.attr("placeholder", text);
+	}
+	
+	$("#start-date").message("날짜를 입력하세요");
+	*/
+	
+	
+	
+	$.fn.date = function(number, unit) {
+		
+		var month = [2, 4, 6, 9, 11];
+		
+		number = number || 0;
+		unit = unit || 'd';
+		
+		var now = new Date();
+		var isLeapYear = $.fn.date.isLeapYear(now.getFullYear());
+		
+		if (unit == "d") {
+			now.setDate(now.getDate() + number);
+		} else if (unit == "w") {
+			now.setDate(now.getDate() + number*7);
+		} else if (unit == "m") {
+			now.setMonth(now.getMonth() + number);
+		} else if (unit == "y") {
+			now.setFullYear(now.getFullYear() + number);
+		}
+		
+		var year = now.getFullYear();
+		var month = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+		var day = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+		
+		var date = year + "-" + month + "-" + day;
+		this.val(date);		
+		
+		return this;
+	}
+	
+	$.fn.date.isLeapYear = function(year) {
+		var isLeapYear = false;
+		isLeapYear = (year%4 == 0);
+		isLeapYear = !(year%100 == 0);
+		isLeapYear = (year%400 == 0);
+		return isLeapYear;
+	}
+	
+	$("#btn-three-day").click(function() {
+		$("#start-date").date(-1).css("border", "1px solid green");
+		$("#end-date").date(0);
+	});
+	$("#btn-one-week").click(function() {
+		$("#start-date").date(-1, "d");
+		$("#end-date").date(0);
+	});
+	$("#btn-one-month").click(function() {
+		$("#start-date").date(-3, "w");
+		$("#end-date").date(0);
+	});
+	$("#btn-three-month").click(function() {
+		$("#start-date").date(-1, "y");
+		$("#end-date").date(0);
+	});
+  })
+  </script>
+</head>
+<body>
+<div class="container">
+	<div class="page-header">
+		<h1>jQuery 플로그인 제작</h1>
+	</div>
+	<div>
+		<input type="date" id="start-date" /> ~ <input type="date" id="end-date" />
+	</div>
+	<div>
+		<button id="btn-three-day">3일</button>
+		<button id="btn-one-week">1주</button>
+		<button id="btn-one-month">1달</button>
+		<button id="btn-three-month">3달</button>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script>
+$(function() {
+	
+	function disableButtons() {
+		$(".btn[id^='btn-move']").removeClass("disabled");
+		
+		if ($("#employee-list .active").is(":first-child")) {
+			$("#btn-move-top").addClass("disabled");
+			$("#btn-move-up").addClass("disabled");
+			
+		} else if ($("#employee-list .active").is(":last-child")) {
+			$("#btn-move-down").addClass("disabled");
+			$("#btn-move-bottom").addClass("disabled");		
+			
+		}
+	}
+	
+	$("#btn-move-top").click(function() {
+		/*
+		var $item = $("#employee-list .active").remove();
+		$("#employee-list").prepend($item);
+		*/
+		$("#employee-list :first-child").before($("#employee-list .active"));
+		disableButtons();
+	});
+	
+	$("#btn-move-up").click(function() {
+		var $item = $("#employee-list .active");
+		$item.prev().before($item);
+		disableButtons();
+	});
+	
+	$("#btn-move-down").click(function() {
+		var $item = $("#employee-list .active");
+		$item.next().after($item);
+		disableButtons();
+	});
+	
+	$("#btn-move-bottom").click(function() {
+		/*
+		var $item = $("#employee-list .active").remove();
+		$("#employee-list").append($item);
+		*/
+		$("#employee-list :last-child").after($("#employee-list .active"));
+		disableButtons();
+	});
+	$("#employee-list").on("click", ".list-group-item", function() {
+		//내가 클릭한 엘리먼트가 this에 담겨있다
+		$(this).toggleClass("active").siblings().removeClass("active");
+		disableButtons();
+	})
+})
+</script>
+<div class="container">
+	<div class="row">
+		<h1>DOM연습</h1>
+	</div>
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">사원리스트</div>
+				<ul class="list-group" id="employee-list">
+					<li class="list-group-item">홍길동</li>
+					<li class="list-group-item">김유신</li>
+					<li class="list-group-item">강감찬</li>
+					<li class="list-group-item">이순신</li>
+					<li class="list-group-item">류관순</li>
+					<li class="list-group-item">김구</li>
+					<li class="list-group-item">안창호</li>
+				</ul>
+			<div class="panel-footer">
+				<button class="btn btn-default" id="btn-move-top"><span class="glyphicon glyphicon-arrow-up"></span></button>
+				<button class="btn btn-default" id="btn-move-up"><span class="glyphicon glyphicon-chevron-up"></span></button>
+				<button class="btn btn-default" id="btn-move-down"><span class="glyphicon glyphicon-chevron-down"></span></button>
+				<button class="btn btn-default" id="btn-move-bottom"><span class="glyphicon glyphicon-arrow-down"></span></button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

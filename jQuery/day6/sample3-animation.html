@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+	  $("#btn-left").click(function(event) {
+		  $("#box").animate({left:"-=100px"})
+	  });
+	  $("#btn-up").click(function(event) {
+		  $("#box").animate({top:"-=100px"})
+	  });
+	  $("#btn-down").click(function(event) {
+		  $("#box").animate({top:"+=100px"})
+	  });
+	  $("#btn-right").click(function(event) {
+		  $("#box").animate({left:"+=100px"})
+	  });
+  })
+  </script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<button id="btn-left" class="btn btn-default">left</button>
+			<button id="btn-up" class="btn btn-default">up</button>
+			<button id="btn-down" class="btn btn-default">down</button>
+			<button id="btn-right" class="btn btn-default">right</button>
+		</div>
+	</div>
+	<hr />
+	<div class="row well" style="height: 500px;">
+		<div class="col-xs-12">
+			<div id="box" style="background-color: red; width: 100px; height: 100px; position: relative;"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
